@@ -1,0 +1,84 @@
+[gd_scene load_steps=13 format=3 uid="uid://bpivllivk8gmd"]
+
+[ext_resource type="Texture2D" uid="uid://beqr6u55gcsj6" path="res://assets/sprites/portal.png" id="1_6w4bt"]
+[ext_resource type="Script" path="res://scripts/portal.gd" id="1_yvdwi"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_spdlu"]
+atlas = ExtResource("1_6w4bt")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2p6j4"]
+atlas = ExtResource("1_6w4bt")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ik87"]
+atlas = ExtResource("1_6w4bt")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_747f0"]
+atlas = ExtResource("1_6w4bt")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w4exq"]
+atlas = ExtResource("1_6w4bt")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p4gc2"]
+atlas = ExtResource("1_6w4bt")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ljt5f"]
+atlas = ExtResource("1_6w4bt")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i4wju"]
+atlas = ExtResource("1_6w4bt")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8fg8q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_spdlu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2p6j4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ik87")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_747f0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w4exq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p4gc2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ljt5f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i4wju")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_emeo5"]
+
+[node name="portal" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_yvdwi")
+metadata/tpPos = Vector2(0, 0)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_8fg8q")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_emeo5")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
